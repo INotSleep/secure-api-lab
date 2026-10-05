@@ -4,6 +4,11 @@ const { users, documents, employees } = require('./data');
 const app = express();
 const PORT = process.env.PORT ?? 3000;
 
+const loggingMiddleware = (req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  next();
+};
+
 const authMiddleware = (req, res, next) => {
   const login = req.headers['x-login'];
   const password = req.headers['x-password'];
@@ -27,6 +32,7 @@ const adminOnlyMiddleware = (req, res, next) => {
 };
 
 app.use(express.json());
+app.use(loggingMiddleware);
 
 app.get('/', (req, res) => {
   res.send('Hello World! The server is running.');
