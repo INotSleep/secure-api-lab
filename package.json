@@ -1,5 +1,5 @@
 {
-  "name": "secure-api-lab",
+  "name": "secure-api-lab3",
   "version": "1.0.0",
   "description": "Secure REST API with Express for lab 3",
   "keywords": [
@@ -7,13 +7,13 @@
     "rest",
     "api"
   ],
-  "homepage": "https://github.com/INotSleep/secure-api-lab#readme",
+  "homepage": "https://github.com/INotSleep/secure-api-lab3#readme",
   "bugs": {
-    "url": "https://github.com/INotSleep/secure-api-lab/issues"
+    "url": "https://github.com/INotSleep/secure-api-lab3/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/INotSleep/secure-api-lab.git"
+    "url": "git+https://github.com/INotSleep/secure-api-lab3.git"
   },
   "license": "MIT",
   "author": "INotSleep",

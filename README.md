@@ -4,15 +4,15 @@
 
 Доступ закривають два middleware. `authMiddleware` перевіряє заголовки `X-Login` і `X-Password`, а `adminOnlyMiddleware` пускає до співробітників тільки роль `admin`. Ще один middleware пише в консоль час, метод і URL кожного запиту.
 
-Репозиторій: https://github.com/INotSleep/secure-api-lab
+Репозиторій: https://github.com/INotSleep/secure-api-lab3
 
 Запуск
 
 Працював з Node.js 24.21.0 і npm 11.19.0. Потрібен Node.js 18 або новіший, бо `test-client.js` використовує вбудований `fetch`.
 
 ```bash
-git clone https://github.com/INotSleep/secure-api-lab.git
-cd secure-api-lab
+git clone https://github.com/INotSleep/secure-api-lab3.git
+cd secure-api-lab3
 npm install
 npm start
 ```
@@ -60,7 +60,7 @@ Express сам відповідає на неіснуючий маршрут HTM
 
 ![Браузер отримав 401](docs/screenshots/01-browser-401.png)
 
-У Postman зібрав колекцію з восьми запитів за таблицею з методички. Її можна імпортувати з `docs/secure-api-lab.postman_collection.json`.
+У Postman зібрав колекцію з восьми запитів за таблицею з методички. Її можна імпортувати з `docs/secure-api-lab3.postman_collection.json`.
 
 Без заголовків сервер не пускає до документів.
 
