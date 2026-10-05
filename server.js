@@ -43,13 +43,40 @@ app.get('/documents', authMiddleware, (req, res) => {
 });
 
 app.post('/documents', authMiddleware, (req, res) => {
-  const document = { ...req.body, id: Date.now() };
+  const { title, content } = req.body ?? {};
+
+  if (!title || !content) {
+    return res
+      .status(400)
+      .json({ message: 'Bad Request. Fields "title" and "content" are required.' });
+  }
+
+  const document = { id: Date.now(), title, content };
   documents.push(document);
   res.status(201).json(document);
 });
 
+app.delete('/documents/:id', authMiddleware, (req, res) => {
+  const index = documents.findIndex((doc) => doc.id === Number(req.params.id));
+
+  if (index === -1) {
+    return res.status(404).json({ message: 'Document not found' });
+  }
+
+  documents.splice(index, 1);
+  res.status(204).send();
+});
+
 app.get('/employees', authMiddleware, adminOnlyMiddleware, (req, res) => {
   res.status(200).json(employees);
+});
+
+app.use((req, res) => {
+  res.status(404).json({ message: 'Route not found' });
+});
+
+app.use((err, req, res, next) => {
+  res.status(err.status ?? 500).json({ message: err.message });
 });
 
 app.listen(PORT, () => {

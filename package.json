@@ -20,7 +20,8 @@
   "type": "commonjs",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "node test-client.js"
   },
   "dependencies": {
     "express": "^5.2.1"

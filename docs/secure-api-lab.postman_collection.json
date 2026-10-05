@@ -1,0 +1,108 @@
+{
+  "info": {
+    "name": "secure-api-lab",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000" }
+  ],
+  "item": [
+    {
+      "name": "01 GET /documents without auth (401)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/documents"
+      }
+    },
+    {
+      "name": "02 GET /employees as user (403)",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "X-Login", "value": "user1" },
+          { "key": "X-Password", "value": "password123" }
+        ],
+        "url": "{{baseUrl}}/employees"
+      }
+    },
+    {
+      "name": "03 GET /documents as user (200)",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "X-Login", "value": "user1" },
+          { "key": "X-Password", "value": "password123" }
+        ],
+        "url": "{{baseUrl}}/documents"
+      }
+    },
+    {
+      "name": "04 GET /employees as admin (200)",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "X-Login", "value": "admin1" },
+          { "key": "X-Password", "value": "password123" }
+        ],
+        "url": "{{baseUrl}}/employees"
+      }
+    },
+    {
+      "name": "05 POST /documents (201)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "X-Login", "value": "user1" },
+          { "key": "X-Password", "value": "password123" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Test Doc\",\n  \"content\": \"...\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "{{baseUrl}}/documents"
+      }
+    },
+    {
+      "name": "06 POST /documents without title (400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "X-Login", "value": "user1" },
+          { "key": "X-Password", "value": "password123" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"content\": \"...\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "{{baseUrl}}/documents"
+      }
+    },
+    {
+      "name": "07 DELETE /documents/1 (204)",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "X-Login", "value": "admin1" },
+          { "key": "X-Password", "value": "password123" }
+        ],
+        "url": "{{baseUrl}}/documents/1"
+      }
+    },
+    {
+      "name": "08 GET /non-existent (404)",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "X-Login", "value": "admin1" },
+          { "key": "X-Password", "value": "password123" }
+        ],
+        "url": "{{baseUrl}}/non-existent"
+      }
+    }
+  ]
+}
